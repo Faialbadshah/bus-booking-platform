@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 36" width="160" height="36">
+  <!-- tooth mark -->
+  <path d="M8 4 C4 4 2 8 2 12 C2 16 4 20 5 23 C6 26 6.5 29 8 29 C9.5 29 10 26 11 23 C12 26 12.5 29 14 29 C15.5 29 16 26 17 23 C18 20 20 16 20 12 C20 8 18 4 14 4 C12 4 11 6 11 6 C11 6 10 4 8 4Z" fill="#1F5E57"/>
+  <!-- wordmark -->
+  <text x="28" y="24" font-family="Georgia,serif" font-size="18" font-weight="600" fill="#1B1A22" letter-spacing="-0.3">Smile</text>
+  <text x="80" y="24" font-family="Georgia,serif" font-size="18" font-weight="300" fill="#C7A271" letter-spacing="-0.3">Studio</text>
+</svg>

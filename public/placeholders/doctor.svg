@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8E5E0"/>
+      <stop offset="100%" stop-color="#D8D3CC"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" fill="url(#bg)"/>
+  <!-- head -->
+  <circle cx="200" cy="140" r="65" fill="#C8C2BA"/>
+  <!-- body / coat -->
+  <path d="M95 400 C95 310 130 270 160 260 L200 280 L240 260 C270 270 305 310 305 400Z" fill="#FFFFFF" opacity="0.85"/>
+  <!-- stethoscope hint -->
+  <circle cx="200" cy="285" r="6" fill="#BDB8B0"/>
+  <text x="200" y="390" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#9E9890">Doctor Photo</text>
+</svg>

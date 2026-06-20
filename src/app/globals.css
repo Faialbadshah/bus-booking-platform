@@ -1,0 +1,63 @@
+@import "tailwindcss";
+
+/*
+  Brand token defaults — all overridable per clinic by setting
+  these CSS variables on the <html> element (see layout.tsx).
+*/
+:root {
+  --brand-canvas: #F6F4F0;
+  --brand-ink: #1B1A22;
+  --brand-accent: #C7A271;
+  --brand-action: #1F5E57;
+}
+
+/*
+  @theme inline: utilities reference CSS vars at runtime, so swapping
+  the brand vars above changes bg-action, text-accent, etc. across
+  the entire site — no component changes needed per clinic.
+*/
+@theme inline {
+  --color-canvas: var(--brand-canvas);
+  --color-ink: var(--brand-ink);
+  --color-accent: var(--brand-accent);
+  --color-action: var(--brand-action);
+
+  --font-display: var(--font-fraunces, Georgia, serif);
+  --font-body: var(--font-inter, Arial, sans-serif);
+}
+
+/* Base */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  background-color: var(--brand-canvas);
+  color: var(--brand-ink);
+  font-family: var(--font-inter, Arial, sans-serif);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.font-display {
+  font-family: var(--font-fraunces, Georgia, serif);
+}

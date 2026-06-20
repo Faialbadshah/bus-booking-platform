@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8E4DD"/>
+      <stop offset="100%" stop-color="#D5D0C8"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" fill="url(#bg)"/>
+  <g transform="translate(200,180)">
+    <path d="M0-60 C-20-60 -35-50 -40-35 C-45-20 -42-5 -38 10 C-34 25 -30 40 -28 55 C-26 70 -24 80 -15 80 C-6 80 -3 65 0 50 C3 65 6 80 15 80 C24 80 26 70 28 55 C30 40 34 25 38 10 C42-5 45-20 40-35 C35-50 20-60 0-60Z" fill="#BDB8B0" opacity="0.7"/>
+  </g>
+  <text x="200" y="295" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#9E9890" letter-spacing="1">PHOTO PLACEHOLDER</text>
+</svg>

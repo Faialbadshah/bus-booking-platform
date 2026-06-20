@@ -8,7 +8,7 @@
   --brand-action: #1F5E57;
 }
 
-/* ─── Tailwind v4 theme — inline = resolved at runtime via CSS vars ─── */
+/* ─── Tailwind v4 theme ─── */
 @theme inline {
   --color-canvas: var(--brand-canvas);
   --color-ink:    var(--brand-ink);
@@ -18,41 +18,35 @@
   --font-display: var(--font-fraunces, Georgia, serif);
   --font-body:    var(--font-inter, Arial, sans-serif);
 
-  /* Animation presets */
-  --animate-fade-in-up:    fade-in-up    0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+  /* Animation presets — used sparingly: modal entrance + mobile nav only */
   --animate-fade-in:       fade-in       0.5s ease both;
   --animate-scale-in:      scale-in      0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
-  --animate-pulse-glow:    pulse-glow    2.4s ease-in-out infinite;
-  --animate-slide-in-down: slide-in-down 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+  --animate-slide-in-down: slide-in-down 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
+  --animate-slide-in-up:   slide-in-up   0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 /* ─── Keyframes ─── */
-@keyframes fade-in-up {
-  from { opacity: 0; transform: translateY(28px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
 @keyframes fade-in {
   from { opacity: 0; }
   to   { opacity: 1; }
 }
 
 @keyframes scale-in {
-  from { opacity: 0; transform: scale(0.95); }
+  from { opacity: 0; transform: scale(0.96); }
   to   { opacity: 1; transform: scale(1); }
 }
 
-@keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(31, 94, 87, 0.45); }
-  50%       { box-shadow: 0 0 0 14px rgba(31, 94, 87, 0); }
-}
-
 @keyframes slide-in-down {
-  from { opacity: 0; transform: translateY(-8px); }
+  from { opacity: 0; transform: translateY(-6px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* ─── Base resets ─── */
+@keyframes slide-in-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Base ─── */
 *,
 *::before,
 *::after { box-sizing: border-box; }
@@ -78,27 +72,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* ─── Typography ─── */
 .font-display { font-family: var(--font-fraunces, Georgia, serif); }
-
-/* ─── Noise texture overlay (subtle grain for premium canvas feel) ─── */
-.bg-noise::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
-  pointer-events: none;
-  border-radius: inherit;
-}
 
 /* ─── Scrollbar ─── */
 ::-webkit-scrollbar       { width: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: #d0cbc3; border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: #b8b3ab; }
 
 /* ─── Selection ─── */
-::selection {
-  background: var(--brand-action);
-  color: #fff;
-}
+::selection { background: var(--brand-action); color: #fff; }

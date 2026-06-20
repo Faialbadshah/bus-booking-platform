@@ -105,7 +105,7 @@ export default function ProcedureDetail({ procedure, phone, onClose }: Props) {
 
           {/* Primary CTA */}
           <div className="space-y-3 pt-1">
-            <WhatsAppCTA phone={phone} message={bookingMessage} size="lg" className="w-full" pulse />
+            <WhatsAppCTA phone={phone} message={bookingMessage} size="lg" className="w-full" />
             <p className="text-center text-[11px] text-ink/35 leading-snug">
               Your message: "Hi, I'm interested in fixing: {procedure.problemLabel}"
             </p>

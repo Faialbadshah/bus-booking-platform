@@ -1,10 +1,7 @@
-import FadeIn from './FadeIn';
-
 const STEPS = [
   {
-    number: '01',
     title: 'Free consultation',
-    body: 'Tell us your concern — or just show us the tile that looked like yours. We photograph your smile, take an X-ray if needed, and show you a digital preview. No cost. No pressure.',
+    body: 'Tell us your concern or just show us the tile that matched. We photograph your smile, take an X-ray if needed, and show you a digital result preview. No cost. No pressure.',
     time: '~20 min',
     icon: (
       <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
@@ -13,9 +10,8 @@ const STEPS = [
     ),
   },
   {
-    number: '02',
     title: 'Your smile plan',
-    body: 'We present your options with real cost ranges — not vague estimates. You see the expected result digitally before we touch anything. You decide. We only proceed with your explicit go-ahead.',
+    body: 'We show you options with real cost ranges — not vague estimates. You see the expected result before we touch anything. We proceed only with your explicit go-ahead.',
     time: '~30 min',
     icon: (
       <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
@@ -24,9 +20,8 @@ const STEPS = [
     ),
   },
   {
-    number: '03',
     title: 'Treatment + follow-up',
-    body: 'Most cases take 1–2 visits. We check in at 2 weeks, then at 6 months. If anything needs a touch-up, it happens. You leave with a result you can photograph and a guarantee you can count on.',
+    body: 'Most cases: 1–2 visits. We check in at 2 weeks and again at 6 months. If anything needs a touch-up, it happens. You leave with a result you can photograph.',
     time: '1–2 visits',
     icon: (
       <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
@@ -41,47 +36,42 @@ export default function HowItWorksSection() {
     <section id="how" className="bg-canvas py-20 md:py-28">
       <div className="max-w-7xl mx-auto px-4 md:px-6">
 
-        <FadeIn>
-          <div className="text-center mb-16 max-w-xl mx-auto">
-            <p className="text-accent text-xs font-bold tracking-widest uppercase mb-2">The process</p>
-            <h2 className="font-display text-4xl md:text-5xl font-semibold text-ink leading-tight">
-              Three steps.<br /> No surprises.
-            </h2>
-            <p className="mt-4 text-ink/50 text-base">
-              We show you the result and the cost before we start — so you decide with full information.
-            </p>
-          </div>
-        </FadeIn>
+        <div className="text-center mb-14 max-w-xl mx-auto">
+          <p className="text-accent text-xs font-bold tracking-widest uppercase mb-2">The process</p>
+          <h2 className="font-display text-4xl md:text-5xl font-semibold text-ink leading-tight">
+            Three steps. No surprises.
+          </h2>
+          <p className="mt-4 text-ink/45 text-base">
+            We show you the result and the cost before we start.
+          </p>
+        </div>
 
-        {/* Steps — horizontal on desktop, vertical on mobile */}
-        <div className="grid md:grid-cols-3 gap-6 md:gap-8 relative">
-          {/* Connector line (desktop) */}
-          <div className="hidden md:block absolute top-14 left-[calc(16.67%+24px)] right-[calc(16.67%+24px)] h-px bg-action/20" aria-hidden />
+        {/* Steps */}
+        <div className="grid md:grid-cols-3 gap-5 relative">
+          {/* Connector line — desktop only */}
+          <div className="hidden md:block absolute top-[3.25rem] left-[calc(16.67%+2rem)] right-[calc(16.67%+2rem)] h-px bg-action/15" aria-hidden />
 
           {STEPS.map((step, i) => (
-            <FadeIn key={i} delay={i * 100}>
-              <div className="relative flex flex-col gap-5">
-                {/* Icon circle */}
-                <div className="relative w-12 h-12 rounded-2xl bg-action/10 text-action flex items-center justify-center flex-shrink-0 z-10">
-                  {step.icon}
-                  {/* Number badge */}
-                  <span className="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-action text-white text-[10px] font-bold flex items-center justify-center">
-                    {i + 1}
+            <div key={i} className="flex flex-col gap-4">
+              {/* Icon + number */}
+              <div className="relative w-12 h-12 rounded-2xl bg-action/10 text-action flex items-center justify-center z-10">
+                {step.icon}
+                <span className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-action text-white text-[10px] font-bold flex items-center justify-center">
+                  {i + 1}
+                </span>
+              </div>
+
+              {/* Card */}
+              <div className="bg-white rounded-2xl p-5 border border-black/[0.05] flex-1">
+                <div className="flex items-start justify-between gap-2 mb-2.5">
+                  <h3 className="font-semibold text-ink text-base leading-snug">{step.title}</h3>
+                  <span className="flex-shrink-0 text-[11px] font-semibold text-action bg-action/8 px-2 py-0.5 rounded-full">
+                    {step.time}
                   </span>
                 </div>
-
-                {/* Content card */}
-                <div className="bg-white rounded-2xl p-6 border border-black/[0.05] flex-1">
-                  <div className="flex items-start justify-between gap-2 mb-3">
-                    <h3 className="font-semibold text-ink text-lg leading-snug">{step.title}</h3>
-                    <span className="flex-shrink-0 text-[11px] font-semibold text-action bg-action/8 px-2.5 py-1 rounded-full">
-                      {step.time}
-                    </span>
-                  </div>
-                  <p className="text-sm text-ink/60 leading-relaxed">{step.body}</p>
-                </div>
+                <p className="text-sm text-ink/55 leading-relaxed">{step.body}</p>
               </div>
-            </FadeIn>
+            </div>
           ))}
         </div>
       </div>

@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Fraunces, Inter } from 'next/font/google';
 import type { CSSProperties } from 'react';
 import './globals.css';
@@ -21,6 +21,14 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: `${clinic.brand.name} — Cosmetic Dentistry`,
   description: clinic.brand.tagline,
+};
+
+// viewport-fit=cover lets env(safe-area-inset-bottom) work for the
+// sticky mobile CTA bar on iPhones with home-bar notch
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  viewportFit: 'cover',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

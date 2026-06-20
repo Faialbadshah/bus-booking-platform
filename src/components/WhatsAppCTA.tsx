@@ -4,7 +4,6 @@ interface Props {
   label?: string;
   size?: 'sm' | 'md' | 'lg';
   className?: string;
-  pulse?: boolean;
 }
 
 function buildWhatsAppUrl(phone: string, message: string) {
@@ -18,25 +17,24 @@ const WAIcon = ({ className }: { className?: string }) => (
   </svg>
 );
 
-export default function WhatsAppCTA({ phone, message, label = 'Book on WhatsApp', size = 'md', className = '', pulse = false }: Props) {
-  const url = buildWhatsAppUrl(phone, message);
+// Min touch target 44×44px on all sizes per WCAG 2.5.5
+const SIZE = {
+  sm: { outer: 'min-h-[44px] px-4 py-2 text-sm gap-1.5',  icon: 'w-4 h-4' },
+  md: { outer: 'min-h-[44px] px-6 py-3 text-base gap-2',  icon: 'w-5 h-5' },
+  lg: { outer: 'min-h-[52px] px-8 py-4 text-lg gap-2.5',  icon: 'w-6 h-6' },
+};
 
-  const sizeClasses = {
-    sm: 'px-4 py-2 text-sm gap-1.5',
-    md: 'px-6 py-3 text-base gap-2',
-    lg: 'px-8 py-4 text-lg gap-2.5',
-  };
-
-  const iconClass = size === 'sm' ? 'w-4 h-4' : size === 'lg' ? 'w-6 h-6' : 'w-5 h-5';
+export default function WhatsAppCTA({ phone, message, label = 'Book on WhatsApp', size = 'md', className = '' }: Props) {
+  const { outer, icon } = SIZE[size];
 
   return (
     <a
-      href={url}
+      href={buildWhatsAppUrl(phone, message)}
       target="_blank"
       rel="noopener noreferrer"
-      className={`inline-flex items-center justify-center font-semibold rounded-full bg-action text-white transition-all hover:brightness-110 active:scale-[0.97] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-action shadow-sm ${pulse ? 'animate-pulse-glow' : ''} ${sizeClasses[size]} ${className}`}
+      className={`inline-flex items-center justify-center font-semibold rounded-full bg-action text-white transition-all hover:brightness-110 active:scale-[0.97] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-action ${outer} ${className}`}
     >
-      <WAIcon className={iconClass} />
+      <WAIcon className={icon} />
       {label}
     </a>
   );

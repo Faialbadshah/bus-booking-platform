@@ -56,11 +56,25 @@ export interface FaqEntry {
   a: string;
 }
 
+export interface Testimonial {
+  quote: string;
+  name: string;
+  procedure: string;
+  rating: number;
+}
+
+export interface StatItem {
+  value: string;
+  label: string;
+}
+
 export interface ClinicConfig {
   brand: ClinicBrand;
   tokens: BrandTokens;
+  stats: StatItem[];
   trust: TrustPoint[];
   doctors: Doctor[];
   procedures: Procedure[];
+  testimonials: Testimonial[];
   faq: FaqEntry[];
 }

@@ -29,6 +29,13 @@ export const clinic: ClinicConfig = {
     logoUrl: '/logo.svg',
   },
 
+  stats: [
+    { value: '3,000+', label: 'Smile cases' },
+    { value: '12+',    label: 'Years experience' },
+    { value: '4.9 ★',  label: 'Google rating' },
+    { value: '1 day',  label: 'Avg. first results' },
+  ],
+
   trust: [
     {
       icon: 'microscope',
@@ -272,6 +279,33 @@ export const clinic: ClinicConfig = {
       faq: [
         { q: 'Can I keep using my sensitivity toothpaste?', a: 'Sensitivity toothpaste masks the symptom. It is better to find and treat the cause so the sensitivity does not worsen.' },
       ],
+    },
+  ],
+
+  testimonials: [
+    {
+      quote: "The gap in my front teeth was fixed in a single visit. I had been hiding my smile for 15 years. Dr. Nair was incredible.",
+      name: "Priya R.",
+      procedure: "Composite bonding · Gaps",
+      rating: 5,
+    },
+    {
+      quote: "My veneers look completely natural — my friends think I just have great teeth. Best money I've spent on myself.",
+      name: "Karan M.",
+      procedure: "Porcelain veneers",
+      rating: 5,
+    },
+    {
+      quote: "One whitening session, 8 shades lighter. My colleagues thought I'd had major work done. Nope, just one hour here.",
+      name: "Ananya S.",
+      procedure: "In-chair whitening",
+      rating: 5,
+    },
+    {
+      quote: "I was terrified of dentists. They showed me a digital preview before touching anything. I finally feel confident at work.",
+      name: "Rahul V.",
+      procedure: "Clear aligners",
+      rating: 5,
     },
   ],
 

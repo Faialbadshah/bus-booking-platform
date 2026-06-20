@@ -11,7 +11,8 @@ interface Props {
 }
 
 export default function BeforeAfterSlider({ beforeImg, afterImg, label, className = '' }: Props) {
-  const [pos, setPos] = useState(50);
+  // Start at 38% so the "after" side has more real-estate — the result is the hero
+  const [pos, setPos] = useState(38);
   const [dragging, setDragging] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -23,6 +24,7 @@ export default function BeforeAfterSlider({ beforeImg, afterImg, label, classNam
     setPos((x / rect.width) * 100);
   }, []);
 
+  // Mouse drag
   useEffect(() => {
     if (!dragging) return;
     const onMove = (e: MouseEvent) => calcPos(e.clientX);
@@ -38,14 +40,18 @@ export default function BeforeAfterSlider({ beforeImg, afterImg, label, classNam
   return (
     <div
       ref={containerRef}
-      className={`relative overflow-hidden rounded-xl select-none touch-none bg-stone-200 ${className}`}
+      className={`relative overflow-hidden rounded-2xl select-none touch-none bg-stone-100 ${className}`}
       style={{ aspectRatio: '4/3' }}
       onTouchMove={(e) => calcPos(e.touches[0].clientX)}
       onTouchStart={(e) => calcPos(e.touches[0].clientX)}
-      aria-label="Before and after comparison — drag to reveal"
+      onClick={(e) => {
+        // Allow click-anywhere to reposition (not just drag)
+        if (!dragging) calcPos(e.clientX);
+      }}
       role="img"
+      aria-label="Before and after comparison — drag or tap to reveal"
     >
-      {/* Before layer */}
+      {/* Before layer (full) */}
       <Image
         src={beforeImg}
         alt="Before"
@@ -53,9 +59,10 @@ export default function BeforeAfterSlider({ beforeImg, afterImg, label, classNam
         className="object-cover"
         unoptimized
         draggable={false}
+        priority
       />
 
-      {/* After layer clipped from left */}
+      {/* After layer — clipped from the left */}
       <div
         className="absolute inset-0"
         style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }}
@@ -67,41 +74,42 @@ export default function BeforeAfterSlider({ beforeImg, afterImg, label, classNam
           className="object-cover"
           unoptimized
           draggable={false}
+          priority
         />
       </div>
 
-      {/* Divider */}
+      {/* Divider line */}
       <div
-        className="absolute top-0 bottom-0 w-0.5 bg-white/90 shadow"
+        className="absolute top-0 bottom-0 w-[2px] bg-white shadow-[0_0_12px_rgba(255,255,255,0.6)]"
         style={{ left: `${pos}%` }}
       >
         {/* Drag handle */}
         <button
-          className="absolute top-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white shadow-lg flex items-center justify-center cursor-ew-resize focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-action"
-          onMouseDown={(e) => { e.preventDefault(); setDragging(true); }}
+          className="absolute top-1/2 -translate-x-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white shadow-xl flex items-center justify-center cursor-ew-resize ring-2 ring-white/30 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-action"
+          onMouseDown={(e) => { e.preventDefault(); e.stopPropagation(); setDragging(true); }}
           onKeyDown={(e) => {
-            if (e.key === 'ArrowLeft') setPos(p => Math.max(0, p - 2));
-            if (e.key === 'ArrowRight') setPos(p => Math.min(100, p + 2));
+            if (e.key === 'ArrowLeft')  setPos((p) => Math.max(0,   p - 2));
+            if (e.key === 'ArrowRight') setPos((p) => Math.min(100, p + 2));
           }}
-          aria-label="Drag to compare before and after"
+          aria-label="Drag to compare — use arrow keys to adjust"
         >
-          <svg viewBox="0 0 20 20" className="w-5 h-5 text-ink" fill="none" aria-hidden>
-            <path d="M6 10l-3 3-3-3M6 10l-3-3-3 3M17 10l3 3 3-3M17 10l3-3 3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-            <path d="M1 10h18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+          <svg viewBox="0 0 24 24" className="w-5 h-5 text-ink/70" fill="none" aria-hidden>
+            <path d="M8 12H16M8 12L5 9M8 12L5 15M16 12L19 9M16 12L19 15" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         </button>
       </div>
 
-      {/* Labels */}
-      <span className="absolute top-3 left-3 bg-black/50 text-white text-xs font-medium px-2 py-1 rounded-full backdrop-blur-sm pointer-events-none">
+      {/* Before / After labels */}
+      <span className="absolute top-3 left-3 bg-black/45 text-white text-[11px] font-semibold px-2.5 py-1 rounded-full backdrop-blur-sm pointer-events-none tracking-wide">
         Before
       </span>
-      <span className="absolute top-3 right-3 bg-black/50 text-white text-xs font-medium px-2 py-1 rounded-full backdrop-blur-sm pointer-events-none">
+      <span className="absolute top-3 right-3 bg-action/90 text-white text-[11px] font-semibold px-2.5 py-1 rounded-full pointer-events-none tracking-wide">
         After
       </span>
 
+      {/* Caption */}
       {label && (
-        <p className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent px-4 pb-3 pt-8 text-white text-sm font-medium pointer-events-none">
+        <p className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/65 to-transparent px-4 pb-3.5 pt-10 text-white text-sm font-medium pointer-events-none leading-snug">
           {label}
         </p>
       )}
